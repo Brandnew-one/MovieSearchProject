@@ -10,10 +10,16 @@
 		0269906867E92DDD5B08E367 /* Pods_NaverMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 995BB195E7800D54216CD590 /* Pods_NaverMovie.framework */; };
 		656CEB85284F214600EFC2EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEB84284F214600EFC2EB /* AppDelegate.swift */; };
 		656CEB87284F214600EFC2EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEB86284F214600EFC2EB /* SceneDelegate.swift */; };
-		656CEB8C284F214600EFC2EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 656CEB8A284F214600EFC2EB /* Main.storyboard */; };
 		656CEB8E284F214600EFC2EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 656CEB8D284F214600EFC2EB /* Assets.xcassets */; };
 		656CEB91284F214600EFC2EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 656CEB8F284F214600EFC2EB /* LaunchScreen.storyboard */; };
 		656CEB99284F216400EFC2EB /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEB98284F216400EFC2EB /* Movie.swift */; };
+		656CEB9D284F224100EFC2EB /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEB9C284F224100EFC2EB /* MovieCell.swift */; };
+		656CEB9F284F291D00EFC2EB /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEB9E284F291D00EFC2EB /* MovieViewController.swift */; };
+		656CEBA3284F2CD100EFC2EB /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEBA2284F2CD100EFC2EB /* MovieView.swift */; };
+		656CEBA5284F2F8400EFC2EB /* NavigationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEBA4284F2F8400EFC2EB /* NavigationItemView.swift */; };
+		656CEBA9284FB0AF00EFC2EB /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEBA8284FB0AF00EFC2EB /* APIService.swift */; };
+		656CEBAB284FB29F00EFC2EB /* API.plist in Resources */ = {isa = PBXBuildFile; fileRef = 656CEBAA284FB29F00EFC2EB /* API.plist */; };
+		656CEBAD284FC79800EFC2EB /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEBAC284FC79800EFC2EB /* MovieViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,11 +27,17 @@
 		656CEB81284F214600EFC2EB /* NaverMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaverMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		656CEB84284F214600EFC2EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		656CEB86284F214600EFC2EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		656CEB8B284F214600EFC2EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		656CEB8D284F214600EFC2EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		656CEB90284F214600EFC2EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		656CEB92284F214600EFC2EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		656CEB98284F216400EFC2EB /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		656CEB9C284F224100EFC2EB /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		656CEB9E284F291D00EFC2EB /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
+		656CEBA2284F2CD100EFC2EB /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
+		656CEBA4284F2F8400EFC2EB /* NavigationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItemView.swift; sourceTree = "<group>"; };
+		656CEBA8284FB0AF00EFC2EB /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		656CEBAA284FB29F00EFC2EB /* API.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = API.plist; sourceTree = "<group>"; };
+		656CEBAC284FC79800EFC2EB /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		86CF3A7A73586E41DF1F0C4E /* Pods-NaverMovie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaverMovie.debug.xcconfig"; path = "Target Support Files/Pods-NaverMovie/Pods-NaverMovie.debug.xcconfig"; sourceTree = "<group>"; };
 		995BB195E7800D54216CD590 /* Pods_NaverMovie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NaverMovie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -63,13 +75,16 @@
 		656CEB83284F214600EFC2EB /* NaverMovie */ = {
 			isa = PBXGroup;
 			children = (
+				656CEBA8284FB0AF00EFC2EB /* APIService.swift */,
 				656CEB84284F214600EFC2EB /* AppDelegate.swift */,
 				656CEB86284F214600EFC2EB /* SceneDelegate.swift */,
+				656CEBAC284FC79800EFC2EB /* MovieViewModel.swift */,
+				656CEB9B284F222E00EFC2EB /* View */,
 				656CEB9A284F217100EFC2EB /* Model */,
-				656CEB8A284F214600EFC2EB /* Main.storyboard */,
 				656CEB8D284F214600EFC2EB /* Assets.xcassets */,
 				656CEB8F284F214600EFC2EB /* LaunchScreen.storyboard */,
 				656CEB92284F214600EFC2EB /* Info.plist */,
+				656CEBAA284FB29F00EFC2EB /* API.plist */,
 			);
 			path = NaverMovie;
 			sourceTree = "<group>";
@@ -80,6 +95,17 @@
 				656CEB98284F216400EFC2EB /* Movie.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		656CEB9B284F222E00EFC2EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				656CEB9E284F291D00EFC2EB /* MovieViewController.swift */,
+				656CEBA4284F2F8400EFC2EB /* NavigationItemView.swift */,
+				656CEBA2284F2CD100EFC2EB /* MovieView.swift */,
+				656CEB9C284F224100EFC2EB /* MovieCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		702C6EA0C077BE3BF8953B58 /* Frameworks */ = {
@@ -96,7 +122,6 @@
 				86CF3A7A73586E41DF1F0C4E /* Pods-NaverMovie.debug.xcconfig */,
 				36B19732BC917F82ACB15AF0 /* Pods-NaverMovie.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -161,8 +186,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				656CEB91284F214600EFC2EB /* LaunchScreen.storyboard in Resources */,
+				656CEBAB284FB29F00EFC2EB /* API.plist in Resources */,
 				656CEB8E284F214600EFC2EB /* Assets.xcassets in Resources */,
-				656CEB8C284F214600EFC2EB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,8 +240,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				656CEB9F284F291D00EFC2EB /* MovieViewController.swift in Sources */,
+				656CEBA3284F2CD100EFC2EB /* MovieView.swift in Sources */,
 				656CEB85284F214600EFC2EB /* AppDelegate.swift in Sources */,
 				656CEB99284F216400EFC2EB /* Movie.swift in Sources */,
+				656CEB9D284F224100EFC2EB /* MovieCell.swift in Sources */,
+				656CEBAD284FC79800EFC2EB /* MovieViewModel.swift in Sources */,
+				656CEBA5284F2F8400EFC2EB /* NavigationItemView.swift in Sources */,
+				656CEBA9284FB0AF00EFC2EB /* APIService.swift in Sources */,
 				656CEB87284F214600EFC2EB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,14 +255,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		656CEB8A284F214600EFC2EB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				656CEB8B284F214600EFC2EB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		656CEB8F284F214600EFC2EB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
