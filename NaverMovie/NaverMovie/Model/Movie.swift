@@ -12,6 +12,14 @@ struct Movie: Codable {
   let lastBuildDate: String
   let total, start, display: Int
   let items: [Item]
+
+  public init() {
+    self.lastBuildDate = ""
+    self.total = -1
+    self.start = -1
+    self.display = -1
+    self.items = []
+  }
 }
 
 // MARK: - Item

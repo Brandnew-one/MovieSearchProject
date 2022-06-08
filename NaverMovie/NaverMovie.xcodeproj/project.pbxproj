@@ -54,6 +54,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		654550AF2850E8CD00887076 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				656CEBA8284FB0AF00EFC2EB /* APIService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		654550B02850E8E000887076 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				656CEBAC284FC79800EFC2EB /* MovieViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		656CEB78284F214600EFC2EB = {
 			isa = PBXGroup;
 			children = (
@@ -75,11 +91,11 @@
 		656CEB83284F214600EFC2EB /* NaverMovie */ = {
 			isa = PBXGroup;
 			children = (
-				656CEBA8284FB0AF00EFC2EB /* APIService.swift */,
 				656CEB84284F214600EFC2EB /* AppDelegate.swift */,
 				656CEB86284F214600EFC2EB /* SceneDelegate.swift */,
-				656CEBAC284FC79800EFC2EB /* MovieViewModel.swift */,
+				654550AF2850E8CD00887076 /* Network */,
 				656CEB9B284F222E00EFC2EB /* View */,
+				654550B02850E8E000887076 /* ViewModel */,
 				656CEB9A284F217100EFC2EB /* Model */,
 				656CEB8D284F214600EFC2EB /* Assets.xcassets */,
 				656CEB8F284F214600EFC2EB /* LaunchScreen.storyboard */,

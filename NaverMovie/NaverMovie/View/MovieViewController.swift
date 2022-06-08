@@ -12,6 +12,7 @@ import SnapKit
 class MovieViewController: UIViewController {
 
   let movieView = MovieView()
+  let movieViewModel = MovieViewModel()
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -21,9 +22,11 @@ class MovieViewController: UIViewController {
     super.viewDidAppear(animated)
     setupView()
     setupNavigationItem()
+    setupKeyboard()
 
     movieView.tableView.delegate = self
     movieView.tableView.dataSource = self
+    movieView.textField.delegate = self
     movieView.tableView.register(MovieCell.self, forCellReuseIdentifier: MovieCell.identifier)
   }
 
@@ -44,6 +47,12 @@ class MovieViewController: UIViewController {
       customView: NavigationRightItemView()
     )
   }
+
+  private func setupKeyboard() {
+    let tabGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing(_:)))
+    view.addGestureRecognizer(tabGesture)
+  }
+
 }
 
 extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
@@ -52,19 +61,11 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
     _ tableView: UITableView,
     numberOfRowsInSection section: Int
   ) -> Int {
-    return 2
+    return movieViewModel.model.items.count
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 90
-  }
-
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    APIService.shared.requestMovie(searchName: "국가") { result in
-      if case let .success(val) = result {
-        print(result)
-      }
-    }
   }
 
   func tableView(
@@ -80,10 +81,27 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
       return UITableViewCell()
     }
     cell.movieImageView.image = UIImage(systemName: "person.fill")
-    cell.movieTitleView.text = "Test"
-    cell.movieActorView.text = "Test: test test"
-    cell.movieDirectorView.text = "TEST: test"
-    cell.movieRateView.text = "9.9"
+    cell.setupCell(item: movieViewModel.model.items[indexPath.row])
     return cell
+  }
+}
+
+extension MovieViewController: UITextFieldDelegate {
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
+
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    guard let findData = textField.text else { return }
+    if !findData.isEmpty {
+      findMovieData(findData: findData)
+    }
+  }
+
+  func findMovieData(findData: String) {
+    self.movieViewModel.fetchMovieData(findData) {
+      self.movieView.tableView.reloadData()
+    }
   }
 }

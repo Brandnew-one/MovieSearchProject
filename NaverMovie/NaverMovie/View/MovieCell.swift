@@ -86,4 +86,13 @@ class MovieCell: UITableViewCell {
     }
   }
 
+  // MARK: - Setup TableviewCell
+  func setupCell(item: Item) {
+//    self.movieImageView.image = item.image // TODO: - 캐시 이용
+    self.movieTitleView.text = item.title
+    self.movieActorView.text = item.actor
+    self.movieDirectorView.text = item.director
+    self.movieRateView.text = item.userRating
+  }
+
 }
