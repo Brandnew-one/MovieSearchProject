@@ -8,7 +8,7 @@
 import Foundation
 
 class MovieViewModel {
-  var model: Movie = Movie()
+  var model: Movie?
 
   func fetchMovieData(
     _ searchData: String,
@@ -16,9 +16,19 @@ class MovieViewModel {
   ) {
     APIService.shared.requestMovie(searchName: searchData) { result in
       if case let .success(val) = result {
-        self.model = val
+        self.model = self.setMovieTitle(model: val)
         completion()
       }
     }
+  }
+
+  // TODO: - 고차함수로 바꿔보기
+  func setMovieTitle(model: Movie) -> Movie {
+    var result = model
+    for i in 0..<result.items.count {
+      result.items[i].title = result.items[i].title.replacingOccurrences(of: "<b>", with: "")
+      result.items[i].title = result.items[i].title.replacingOccurrences(of: "</b>", with: "")
+    }
+    return result
   }
 }

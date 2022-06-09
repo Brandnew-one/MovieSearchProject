@@ -88,7 +88,7 @@ class MovieCell: UITableViewCell {
 
   // MARK: - Setup TableviewCell
   func setupCell(item: Item) {
-//    self.movieImageView.image = item.image // TODO: - 캐시 이용
+    self.movieImageView.setImageUrl(item.image)
     self.movieTitleView.text = item.title
     self.movieActorView.text = item.actor
     self.movieDirectorView.text = item.director

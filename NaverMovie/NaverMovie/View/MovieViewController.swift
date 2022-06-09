@@ -55,13 +55,15 @@ class MovieViewController: UIViewController {
 
 }
 
+// TODO: - 페이지네이션 구현하기
 extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
 
   func tableView(
     _ tableView: UITableView,
     numberOfRowsInSection section: Int
   ) -> Int {
-    return movieViewModel.model.items.count
+    guard let model =  movieViewModel.model else { return 0 }
+    return model.items.count
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -76,16 +78,17 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
       let cell = movieView.tableView.dequeueReusableCell(
         withIdentifier: MovieCell.identifier,
         for: indexPath
-      ) as? MovieCell
+      ) as? MovieCell,
+      let model = movieViewModel.model
     else {
       return UITableViewCell()
     }
-    cell.movieImageView.image = UIImage(systemName: "person.fill")
-    cell.setupCell(item: movieViewModel.model.items[indexPath.row])
+    cell.setupCell(item: model.items[indexPath.row])
     return cell
   }
 }
 
+// TODO: - use primary keyboard info instead. 확인해보기
 extension MovieViewController: UITextFieldDelegate {
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     textField.resignFirstResponder()

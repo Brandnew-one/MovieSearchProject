@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0269906867E92DDD5B08E367 /* Pods_NaverMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 995BB195E7800D54216CD590 /* Pods_NaverMovie.framework */; };
+		6537E29A28520C1700B48925 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6537E29928520C1700B48925 /* ImageCacheManager.swift */; };
 		656CEB85284F214600EFC2EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEB84284F214600EFC2EB /* AppDelegate.swift */; };
 		656CEB87284F214600EFC2EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEB86284F214600EFC2EB /* SceneDelegate.swift */; };
 		656CEB8E284F214600EFC2EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 656CEB8D284F214600EFC2EB /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		36B19732BC917F82ACB15AF0 /* Pods-NaverMovie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaverMovie.release.xcconfig"; path = "Target Support Files/Pods-NaverMovie/Pods-NaverMovie.release.xcconfig"; sourceTree = "<group>"; };
+		6537E29928520C1700B48925 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		656CEB81284F214600EFC2EB /* NaverMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaverMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		656CEB84284F214600EFC2EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		656CEB86284F214600EFC2EB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		654550B12850F89000887076 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				6537E29928520C1700B48925 /* ImageCacheManager.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
 		656CEB78284F214600EFC2EB = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +103,7 @@
 			children = (
 				656CEB84284F214600EFC2EB /* AppDelegate.swift */,
 				656CEB86284F214600EFC2EB /* SceneDelegate.swift */,
+				654550B12850F89000887076 /* DB */,
 				654550AF2850E8CD00887076 /* Network */,
 				656CEB9B284F222E00EFC2EB /* View */,
 				654550B02850E8E000887076 /* ViewModel */,
@@ -258,6 +269,7 @@
 			files = (
 				656CEB9F284F291D00EFC2EB /* MovieViewController.swift in Sources */,
 				656CEBA3284F2CD100EFC2EB /* MovieView.swift in Sources */,
+				6537E29A28520C1700B48925 /* ImageCacheManager.swift in Sources */,
 				656CEB85284F214600EFC2EB /* AppDelegate.swift in Sources */,
 				656CEB99284F216400EFC2EB /* Movie.swift in Sources */,
 				656CEB9D284F224100EFC2EB /* MovieCell.swift in Sources */,

@@ -11,22 +11,14 @@ import Foundation
 struct Movie: Codable {
   let lastBuildDate: String
   let total, start, display: Int
-  let items: [Item]
-
-  public init() {
-    self.lastBuildDate = ""
-    self.total = -1
-    self.start = -1
-    self.display = -1
-    self.items = []
-  }
+  var items: [Item]
 }
 
 // MARK: - Item
 struct Item: Codable {
-  let title: String
+  var title: String
   let link: String
   let image: String
-  let subtitle, pubDate, director, actor: String
+  var subtitle, pubDate, director, actor: String
   let userRating: String
 }
