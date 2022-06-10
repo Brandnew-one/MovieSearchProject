@@ -40,7 +40,7 @@ class MovieViewModel {
           if case let .success(val) = result {
             var tempMovie: Movie = val
             tempMovie = self.setMovieData(model: tempMovie)
-            print(val.start)
+//            print(val.start)
             self.total = val.total
             self.start = val.start
             tempMovie.items.forEach { self.model?.items.append($0) }

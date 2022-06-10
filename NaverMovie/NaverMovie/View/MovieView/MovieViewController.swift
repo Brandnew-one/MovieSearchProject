@@ -44,14 +44,28 @@ class MovieViewController: UIViewController {
     navigationItem.leftBarButtonItem = UIBarButtonItem(
       customView: NavigationLeftItemView()
     )
+
+    let rightBarButtonItem = NavigationRightItemView()
+    rightBarButtonItem.navigationButtonView.addTarget(
+      self,
+      action: #selector(rightNaviItemClicked),
+      for: .touchUpInside
+    )
     navigationItem.rightBarButtonItem = UIBarButtonItem(
-      customView: NavigationRightItemView()
+      customView: rightBarButtonItem
     )
   }
 
   private func setupKeyboard() {
     let tabGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing(_:)))
     view.addGestureRecognizer(tabGesture)
+  }
+
+  @objc
+  func rightNaviItemClicked() {
+    let vc = StarViewController()
+    vc.modalPresentationStyle = .fullScreen
+    self.present(vc, animated: true)
   }
 
 }
@@ -71,7 +85,6 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    print(#function)
     let vc = MovieDetailViewController()
     vc.url = URL(string: (movieViewModel.model?.items[indexPath.row].link) ?? "")
     vc.movieTitle = movieViewModel.model?.items[indexPath.row].title

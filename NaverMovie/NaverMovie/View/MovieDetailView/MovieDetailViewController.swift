@@ -22,7 +22,10 @@ class MovieDetailViewController: UIViewController {
   }
 
   private func setupNaviItems() {
+    let font: UIFont = .systemFont(ofSize: 20, weight: .heavy)
+    let naviFont = [NSAttributedString.Key.font: font]
     self.navigationController?.navigationBar.tintColor = .black
+    self.navigationController?.navigationBar.titleTextAttributes = naviFont
     navigationItem.title = movieTitle
     navigationItem.leftBarButtonItem = UIBarButtonItem(
       image: UIImage(systemName: "chevron.backward"),

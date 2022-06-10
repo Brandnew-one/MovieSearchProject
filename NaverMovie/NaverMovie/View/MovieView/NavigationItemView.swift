@@ -57,6 +57,9 @@ class NavigationRightItemView: UIView {
     navigationButtonView.setTitle("즐겨찾기", for: .normal)
     navigationButtonView.setTitleColor(.black, for: .normal)
     navigationButtonView.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+//    navigationButtonView.titleEdgeInsets = .init(
+//      top: 8, left: 4, bottom: 8, right: 4
+//    )
 
     navigationButtonView.layer.borderWidth = 1
     navigationButtonView.layer.borderColor = UIColor.systemGray6.cgColor
