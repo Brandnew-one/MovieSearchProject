@@ -25,6 +25,8 @@
 		659007FF2852D3770043600E /* StarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659007FE2852D3770043600E /* StarViewController.swift */; };
 		65DA0FB12852F614005E2966 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA0FB02852F614005E2966 /* UserDefaultsManager.swift */; };
 		65DA0FB328530523005E2966 /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA0FB228530523005E2966 /* StarView.swift */; };
+		65DA0FB52853321B005E2966 /* StarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA0FB42853321B005E2966 /* StarViewModel.swift */; };
+		65DA0FB728535D98005E2966 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DA0FB628535D98005E2966 /* MovieDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		659007FE2852D3770043600E /* StarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewController.swift; sourceTree = "<group>"; };
 		65DA0FB02852F614005E2966 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		65DA0FB228530523005E2966 /* StarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarView.swift; sourceTree = "<group>"; };
+		65DA0FB42853321B005E2966 /* StarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewModel.swift; sourceTree = "<group>"; };
+		65DA0FB628535D98005E2966 /* MovieDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailView.swift; sourceTree = "<group>"; };
 		86CF3A7A73586E41DF1F0C4E /* Pods-NaverMovie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaverMovie.debug.xcconfig"; path = "Target Support Files/Pods-NaverMovie/Pods-NaverMovie.debug.xcconfig"; sourceTree = "<group>"; };
 		995BB195E7800D54216CD590 /* Pods_NaverMovie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NaverMovie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -76,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				656CEBAC284FC79800EFC2EB /* MovieViewModel.swift */,
+				65DA0FB42853321B005E2966 /* StarViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				659007FC2852D3410043600E /* MovieDetailViewController.swift */,
+				65DA0FB628535D98005E2966 /* MovieDetailView.swift */,
 			);
 			path = MovieDetailView;
 			sourceTree = "<group>";
@@ -322,8 +328,10 @@
 				656CEBAD284FC79800EFC2EB /* MovieViewModel.swift in Sources */,
 				656CEBA5284F2F8400EFC2EB /* NavigationItemView.swift in Sources */,
 				656CEBA9284FB0AF00EFC2EB /* APIService.swift in Sources */,
+				65DA0FB52853321B005E2966 /* StarViewModel.swift in Sources */,
 				659007FD2852D3410043600E /* MovieDetailViewController.swift in Sources */,
 				65DA0FB328530523005E2966 /* StarView.swift in Sources */,
+				65DA0FB728535D98005E2966 /* MovieDetailView.swift in Sources */,
 				656CEB87284F214600EFC2EB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -104,6 +104,9 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
     else {
       return UITableViewCell()
     }
+    cell.cellDelegate = self
+    cell.index = indexPath.row
+    cell.isStar = movieViewModel.checkUserDefaults(model.items[indexPath.row])
     cell.setupCell(item: model.items[indexPath.row])
     return cell
   }
@@ -117,6 +120,7 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
     return footerView
   }
 
+  // MARK: - 근본적인 오류 수정 필요!
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     let offsetY = scrollView.contentOffset.y
     let contentHeight = movieView.tableView.contentSize.height
@@ -136,6 +140,18 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
     }
   }
 }
+
+extension MovieViewController: CellButtonDelegate {
+  // MARK: - UI로직은 이미 수행되었고 정상적으로 동작한다고 (가정) -> item이 존재하면 지우고, 존재하지 않으면 추가
+  func starButtonClicked(_ index: Int?) {
+    guard
+      let index = index,
+      let item = movieViewModel.model?.items[index]
+    else { return }
+    movieViewModel.changeUserDefaults(item)
+  }
+}
+
 
 // TODO: - use primary keyboard info instead. 확인해보기
 extension MovieViewController: UITextFieldDelegate {

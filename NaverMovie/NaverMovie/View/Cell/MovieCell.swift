@@ -9,8 +9,15 @@ import UIKit
 
 import SnapKit
 
+protocol CellButtonDelegate: AnyObject {
+  func starButtonClicked(_ index: Int?)
+}
+
 class MovieCell: UITableViewCell {
   static let identifier = "MovieCell"
+  var cellDelegate: CellButtonDelegate?
+  var isStar: Bool = false
+  var index: Int?
 
   let movieImageView = UIImageView()
   let movieTitleView = UILabel()
@@ -21,6 +28,11 @@ class MovieCell: UITableViewCell {
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
+    self.favoriteButton.addTarget(
+      self,
+      action: #selector(starButtonClicked(sender:)),
+      for: .touchUpInside
+    )
     setupView()
     setupConstraints()
   }
@@ -30,7 +42,8 @@ class MovieCell: UITableViewCell {
   }
 
   private func setupView() {
-    [movieImageView, movieTitleView, movieDirectorView, movieActorView, movieRateView, favoriteButton].forEach { self.addSubview($0) }
+    [movieImageView, movieTitleView, movieDirectorView, movieActorView, movieRateView].forEach { self.addSubview($0) }
+    contentView.addSubview(favoriteButton) // MARK: - TableView 버튼
     setupText()
     favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
     favoriteButton.tintColor = .systemYellow
@@ -93,6 +106,15 @@ class MovieCell: UITableViewCell {
     self.movieActorView.text = item.actor
     self.movieDirectorView.text = item.director
     self.movieRateView.text = item.userRating
+    self.favoriteButton.tintColor = isStar ? .systemYellow : .systemGray
+  }
+
+  // MARK: - UI 로직, 저장하는 로직은 VC에서 담당
+  @objc
+  func starButtonClicked(sender: UIButton) {
+    self.isStar.toggle()
+    self.favoriteButton.tintColor = isStar ? .systemYellow : .systemGray
+    cellDelegate?.starButtonClicked(index)
   }
 
 }

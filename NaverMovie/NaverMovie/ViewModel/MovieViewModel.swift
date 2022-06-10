@@ -40,13 +40,37 @@ class MovieViewModel {
           if case let .success(val) = result {
             var tempMovie: Movie = val
             tempMovie = self.setMovieData(model: tempMovie)
-//            print(val.start)
             self.total = val.total
             self.start = val.start
-            tempMovie.items.forEach { self.model?.items.append($0) }
+            // MARK: - 현재 중복되는 값이 계속해서 들어가는 문제가 있어 중복되지 않는 경우에만 넣어주도록 설정
+            tempMovie.items.forEach {
+              if !(self.model?.items.contains($0) ?? false) {
+                self.model?.items.append($0)
+              }
+            }
             completion()
           }
         }
+    }
+  }
+
+  func checkUserDefaults(_ item: Item) -> Bool {
+    return UserDefaultsManager.shared.containMovieList(item)
+  }
+
+  func addUserDefaults(_ item: Item) {
+    UserDefaultsManager.shared.appendMovieListItem(item)
+  }
+
+  func removeUserDefaults(_ item: Item) {
+    UserDefaultsManager.shared.removeMovieListItem(item)
+  }
+
+  func changeUserDefaults(_ item: Item) {
+    if UserDefaultsManager.shared.containMovieList(item) {
+      removeUserDefaults(item)
+    } else {
+      addUserDefaults(item)
     }
   }
 

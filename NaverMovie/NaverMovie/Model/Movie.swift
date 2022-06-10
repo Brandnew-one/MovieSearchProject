@@ -22,3 +22,12 @@ struct Item: Codable {
   var subtitle, pubDate, director, actor: String
   let userRating: String
 }
+
+extension Item: Equatable {
+  static func ==(lhs: Self, rhs: Self) -> Bool {
+    return
+    lhs.title == rhs.title &&
+    lhs.subtitle == rhs.subtitle &&
+    lhs.director == rhs.director
+  }
+}
