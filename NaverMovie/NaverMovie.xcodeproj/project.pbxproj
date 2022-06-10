@@ -68,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		651778B32853B15900BF7490 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				656CEB86284F214600EFC2EB /* SceneDelegate.swift */,
+				656CEB84284F214600EFC2EB /* AppDelegate.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		654550AF2850E8CD00887076 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,11 +124,10 @@
 		656CEB83284F214600EFC2EB /* NaverMovie */ = {
 			isa = PBXGroup;
 			children = (
-				656CEB84284F214600EFC2EB /* AppDelegate.swift */,
-				656CEB86284F214600EFC2EB /* SceneDelegate.swift */,
+				651778B32853B15900BF7490 /* Supporting Files */,
 				654550B12850F89000887076 /* DB */,
 				654550AF2850E8CD00887076 /* Network */,
-				656CEB9B284F222E00EFC2EB /* View */,
+				656CEB9B284F222E00EFC2EB /* Views */,
 				654550B02850E8E000887076 /* ViewModel */,
 				656CEB9A284F217100EFC2EB /* Model */,
 				656CEB8D284F214600EFC2EB /* Assets.xcassets */,
@@ -138,7 +146,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		656CEB9B284F222E00EFC2EB /* View */ = {
+		656CEB9B284F222E00EFC2EB /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				65DA0FAD2852EE14005E2966 /* Cell */,
@@ -146,7 +154,7 @@
 				65DA0FAE2852EE23005E2966 /* MovieDetailView */,
 				65DA0FAF2852EE2D005E2966 /* StarView */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		65DA0FAC2852EDFE005E2966 /* MovieView */ = {
