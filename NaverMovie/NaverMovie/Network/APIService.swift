@@ -22,6 +22,7 @@ class APIService {
   func requestMovie(
     searchName: String,
     display: Int = 10,
+    start: Int = 1,
     completion: @escaping (Result<Movie, NetworkError>) -> Void
   ) {
     guard
@@ -39,9 +40,10 @@ class APIService {
     let session = URLSession(configuration: config)
     let querry: [URLQueryItem] = [
       URLQueryItem(name: "query", value: searchName),
-      URLQueryItem(name: "display", value: String(display))
+      URLQueryItem(name: "display", value: String(display)),
+      URLQueryItem(name: "start", value: String(start)),
     ]
-    url?.queryItems = querry // MARK: -
+    url?.queryItems = querry
 
     var requestURL = URLRequest(url: (url?.url)!) // MARK: -
     requestURL.addValue(id, forHTTPHeaderField: "X-Naver-Client-Id")

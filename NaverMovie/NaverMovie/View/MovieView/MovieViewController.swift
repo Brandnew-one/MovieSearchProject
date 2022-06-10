@@ -13,6 +13,7 @@ class MovieViewController: UIViewController {
 
   let movieView = MovieView()
   let movieViewModel = MovieViewModel()
+  var findData: String?
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -22,7 +23,7 @@ class MovieViewController: UIViewController {
     super.viewDidAppear(animated)
     setupView()
     setupNavigationItem()
-    setupKeyboard()
+//    setupKeyboard()
 
     movieView.tableView.delegate = self
     movieView.tableView.dataSource = self
@@ -55,7 +56,6 @@ class MovieViewController: UIViewController {
 
 }
 
-// TODO: - 페이지네이션 구현하기
 extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
 
   func tableView(
@@ -68,6 +68,14 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 90
+  }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    print(#function)
+    let vc = MovieDetailViewController()
+    vc.url = URL(string: (movieViewModel.model?.items[indexPath.row].link) ?? "")
+    vc.movieTitle = movieViewModel.model?.items[indexPath.row].title
+    self.navigationController?.pushViewController(vc, animated: true)
   }
 
   func tableView(
@@ -86,6 +94,34 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
     cell.setupCell(item: model.items[indexPath.row])
     return cell
   }
+
+  func createFooterView() -> UIView {
+    let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+    let spinner = UIActivityIndicatorView()
+    spinner.center = footerView.center
+    footerView.addSubview(spinner)
+    spinner.startAnimating()
+    return footerView
+  }
+
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    let offsetY = scrollView.contentOffset.y
+    let contentHeight = movieView.tableView.contentSize.height
+    let height = scrollView.frame.height
+
+    if offsetY > (contentHeight - height) {
+      self.movieView.tableView.tableFooterView = createFooterView()
+      DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+        guard let findData = self.findData else { return }
+        self.movieViewModel.paginationMovieData(findData) {
+          self.movieView.tableView.reloadData()
+        }
+        DispatchQueue.main.async {
+          self.movieView.tableView.tableFooterView = nil
+        }
+      }
+    }
+  }
 }
 
 // TODO: - use primary keyboard info instead. 확인해보기
@@ -98,6 +134,7 @@ extension MovieViewController: UITextFieldDelegate {
   func textFieldDidEndEditing(_ textField: UITextField) {
     guard let findData = textField.text else { return }
     if !findData.isEmpty {
+      self.findData = findData
       findMovieData(findData: findData)
     }
   }
