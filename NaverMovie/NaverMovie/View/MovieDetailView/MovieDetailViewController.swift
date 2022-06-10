@@ -19,18 +19,23 @@ class MovieDetailViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    setupTableView()
+    setupNaviItems()
+    setupWebView()
+  }
+
+  private func setupTableView() {
     movieDetailView.tableView.alwaysBounceVertical = false
     movieDetailView.tableView.allowsSelection = false
     movieDetailView.tableView.delegate = self
     movieDetailView.tableView.dataSource = self
     movieDetailView.tableView.register(MovieCell.self, forCellReuseIdentifier: MovieCell.identifier)
-    setupNaviItems()
-    setupWebView()
   }
 
   private func setupNaviItems() {
     let font: UIFont = .systemFont(ofSize: 20, weight: .heavy)
     let naviFont = [NSAttributedString.Key.font: font]
+    self.navigationController?.navigationBar.isHidden = false
     self.navigationController?.navigationBar.tintColor = .black
     self.navigationController?.navigationBar.titleTextAttributes = naviFont
     navigationItem.title = movieTitle

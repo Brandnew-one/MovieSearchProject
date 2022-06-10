@@ -13,13 +13,21 @@ class StarViewController: UIViewController {
   let starView = StarView()
   let starViewModel = StarViewModel()
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    setupNaviView()
+    starViewModel.reloadUserDefaults()
+    self.starView.tableView.reloadData()
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
+    setupTableView()
+  }
 
-    starView.tableView.delegate = self
-    starView.tableView.dataSource = self
-    starView.tableView.register(MovieCell.self, forCellReuseIdentifier: MovieCell.identifier)
+  private func setupNaviView() {
+    navigationController?.navigationBar.isHidden = true
   }
 
   private func setupView() {
@@ -33,6 +41,12 @@ class StarViewController: UIViewController {
       action: #selector(closeButtonClicked),
       for: .touchUpInside
     )
+  }
+
+  private func setupTableView() {
+    starView.tableView.delegate = self
+    starView.tableView.dataSource = self
+    starView.tableView.register(MovieCell.self, forCellReuseIdentifier: MovieCell.identifier)
   }
 
   @objc
@@ -56,23 +70,37 @@ extension StarViewController: UITableViewDelegate, UITableViewDataSource {
   ) -> UITableViewCell {
     guard
       let cell = starView.tableView.dequeueReusableCell(
-      withIdentifier: MovieCell.identifier,
-      for: indexPath
-    )as? MovieCell,
+        withIdentifier: MovieCell.identifier,
+        for: indexPath
+      )as? MovieCell,
       let items = starViewModel.items
     else {
       return UITableViewCell()
     }
+    cell.isStar = UserDefaultsManager.shared.containMovieList(items[indexPath.row])
+    cell.index = indexPath.row
+    cell.cellDelegate = self
     cell.setupCell(item: items[indexPath.row])
-
     return cell
   }
 
-//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    let vc = MovieDetailViewController()
-//    vc.url = URL(string: (starViewModel.items?[indexPath.row].link) ?? "")
-//    vc.movieTitle = starViewModel.items?[indexPath.row].title
-//    self.navigationController?.pushViewController(vc, animated: true)
-//  }
-
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let vc = MovieDetailViewController()
+    vc.url = URL(string: (starViewModel.items?[indexPath.row].link) ?? "")
+    vc.item = starViewModel.items?[indexPath.row]
+    vc.movieTitle = starViewModel.items?[indexPath.row].title
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
 }
+
+extension StarViewController: CellButtonDelegate {
+  func starButtonClicked(_ index: Int?) {
+    guard
+      let index = index,
+      let item = starViewModel.items?[index]
+    else { return }
+    starViewModel.changeUserDefaults(item)
+    self.starView.tableView.reloadData()
+  }
+}
+

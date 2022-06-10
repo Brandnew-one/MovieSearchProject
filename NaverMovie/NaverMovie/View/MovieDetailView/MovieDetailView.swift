@@ -30,7 +30,7 @@ class MovieDetailView: UIView {
 
   private func setupConstraints() {
     tableView.snp.makeConstraints { make in
-      make.top.equalToSuperview().offset(4)
+      make.top.equalToSuperview().offset(8)
       make.leading.trailing.equalToSuperview()
       make.height.equalTo(90)
     }

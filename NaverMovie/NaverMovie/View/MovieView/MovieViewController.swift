@@ -24,12 +24,8 @@ class MovieViewController: UIViewController {
     super.viewDidAppear(animated)
     setupView()
     setupNavigationItem()
+    setupTableView()
 //    setupKeyboard()
-
-    movieView.tableView.delegate = self
-    movieView.tableView.dataSource = self
-    movieView.textField.delegate = self
-    movieView.tableView.register(MovieCell.self, forCellReuseIdentifier: MovieCell.identifier)
   }
 
   private func setupView() {
@@ -57,14 +53,21 @@ class MovieViewController: UIViewController {
     )
   }
 
-  private func setupKeyboard() {
-    let tabGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing(_:)))
-    view.addGestureRecognizer(tabGesture)
+  private func setupTableView() {
+    movieView.tableView.delegate = self
+    movieView.tableView.dataSource = self
+    movieView.textField.delegate = self
+    movieView.tableView.register(MovieCell.self, forCellReuseIdentifier: MovieCell.identifier)
   }
+
+//  private func setupKeyboard() {
+//    let tabGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing(_:)))
+//    view.addGestureRecognizer(tabGesture)
+//  }
 
   @objc
   func rightNaviItemClicked() {
-    let vc = StarViewController()
+    let vc = UINavigationController(rootViewController: StarViewController())
     vc.modalPresentationStyle = .fullScreen
     self.present(vc, animated: true)
   }
@@ -124,6 +127,7 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
 
   // MARK: - 근본적인 오류 수정 필요!
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    guard movieViewModel.model != nil else { return }
     let offsetY = scrollView.contentOffset.y
     let contentHeight = movieView.tableView.contentSize.height
     let height = scrollView.frame.height

@@ -15,6 +15,10 @@ class StarViewModel {
     items = itemsDic.values.map{ $0 }
   }
 
+  func reloadUserDefaults() {
+    items = UserDefaultsManager.shared.movieDictionary.values.map{ $0 }
+  }
+
   func addUserDefaults(_ item: Item) {
     UserDefaultsManager.shared.appendMovieListItem(item)
     items?.append(item)
