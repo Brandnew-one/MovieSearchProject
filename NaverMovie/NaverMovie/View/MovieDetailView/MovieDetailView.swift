@@ -26,11 +26,19 @@ class MovieDetailView: UIView {
 
   private func setupView() {
     [tableView, webView].forEach { self.addSubview($0) }
-    
   }
 
   private func setupConstraints() {
-    
+    tableView.snp.makeConstraints { make in
+      make.top.equalToSuperview().offset(4)
+      make.leading.trailing.equalToSuperview()
+      make.height.equalTo(90)
+    }
+
+    webView.snp.makeConstraints { make in
+      make.top.equalTo(tableView.snp.bottom)
+      make.leading.trailing.bottom.equalToSuperview()
+    }
   }
 
 }

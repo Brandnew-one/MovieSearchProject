@@ -68,11 +68,11 @@ extension StarViewController: UITableViewDelegate, UITableViewDataSource {
     return cell
   }
 
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let vc = MovieDetailViewController()
-    vc.url = URL(string: (starViewModel.items?[indexPath.row].link) ?? "")
-    vc.movieTitle = starViewModel.items?[indexPath.row].title
-    self.navigationController?.pushViewController(vc, animated: true)
-  }
+//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    let vc = MovieDetailViewController()
+//    vc.url = URL(string: (starViewModel.items?[indexPath.row].link) ?? "")
+//    vc.movieTitle = starViewModel.items?[indexPath.row].title
+//    self.navigationController?.pushViewController(vc, animated: true)
+//  }
 
 }

@@ -13,10 +13,17 @@ import SnapKit
 class MovieDetailViewController: UIViewController {
   var url: URL? = nil
   var movieTitle: String? = nil
-  private let webView = WKWebView()
+  var item: Item? = nil
+
+  private let movieDetailView = MovieDetailView()
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    movieDetailView.tableView.alwaysBounceVertical = false
+    movieDetailView.tableView.allowsSelection = false
+    movieDetailView.tableView.delegate = self
+    movieDetailView.tableView.dataSource = self
+    movieDetailView.tableView.register(MovieCell.self, forCellReuseIdentifier: MovieCell.identifier)
     setupNaviItems()
     setupWebView()
   }
@@ -37,8 +44,8 @@ class MovieDetailViewController: UIViewController {
 
   private func setupWebView() {
     view.backgroundColor = .white
-    view.addSubview(webView)
-    webView.snp.makeConstraints { make in
+    view.addSubview(movieDetailView)
+    movieDetailView.snp.makeConstraints { make in
       make.edges.equalTo(view.safeAreaLayoutGuide)
     }
     webViewConfig()
@@ -47,13 +54,55 @@ class MovieDetailViewController: UIViewController {
   private func webViewConfig() {
     guard let url = url else { return }
     let request = URLRequest(url: url)
-    webView.configuration.defaultWebpagePreferences.allowsContentJavaScript = true
-    webView.load(request)
+    movieDetailView.webView.configuration.defaultWebpagePreferences.allowsContentJavaScript = true
+    movieDetailView.webView.load(request)
   }
 
   @objc
   func backButtonClicked() {
     self.navigationController?.popViewController(animated: true)
   }
-
 }
+
+extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource {
+
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    if item != nil {
+      return 1
+    } else { return 0 }
+  }
+
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 90
+  }
+
+  func tableView(
+    _ tableView: UITableView,
+    cellForRowAt indexPath: IndexPath
+  ) -> UITableViewCell {
+    guard
+      let cell = movieDetailView.tableView.dequeueReusableCell(
+      withIdentifier: MovieCell.identifier,
+      for: indexPath
+    ) as? MovieCell,
+      let item = item
+    else {
+      return UITableViewCell()
+    }
+    cell.isStar = UserDefaultsManager.shared.containMovieList(item)
+    cell.favoriteButton.addTarget(self, action: #selector(favoriteButtonClicked), for: .touchUpInside)
+    cell.setupCell(item: item)
+    return cell
+  }
+
+  @objc
+  func favoriteButtonClicked() {
+    guard let item = item else { return }
+    if UserDefaultsManager.shared.containMovieList(item) {
+      UserDefaultsManager.shared.removeMovieListItem(item)
+    } else {
+      UserDefaultsManager.shared.appendMovieListItem(item)
+    }
+  }
+}
+

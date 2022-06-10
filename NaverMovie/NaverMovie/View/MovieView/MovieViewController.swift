@@ -17,6 +17,7 @@ class MovieViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    movieView.tableView.reloadData() // MARK: - Star Button
   }
 
   override func viewDidAppear(_ animated: Bool) {
@@ -88,6 +89,7 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
     let vc = MovieDetailViewController()
     vc.url = URL(string: (movieViewModel.model?.items[indexPath.row].link) ?? "")
     vc.movieTitle = movieViewModel.model?.items[indexPath.row].title
+    vc.item = movieViewModel.model?.items[indexPath.row]
     self.navigationController?.pushViewController(vc, animated: true)
   }
 

@@ -33,5 +33,4 @@ class StarViewModel {
       addUserDefaults(item)
     }
   }
-  
 }
