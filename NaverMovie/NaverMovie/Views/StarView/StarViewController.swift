@@ -17,7 +17,7 @@ class StarViewController: UIViewController {
     super.viewWillAppear(animated)
     setupNaviView()
     starViewModel.reloadUserDefaults()
-    self.starView.tableView.reloadData() // MARK: - Main Thread
+    self.starView.tableView.reloadData()
   }
 
   override func viewDidLoad() {
@@ -77,8 +77,8 @@ extension StarViewController: UITableViewDelegate, UITableViewDataSource {
     else {
       return UITableViewCell()
     }
-    cell.isStar = UserDefaultsManager.shared.containMovieList(items[indexPath.row]) // MARK: - VM
-//    cell.index = indexPath.row
+//    cell.isStar = UserDefaultsManager.shared.containMovieList(items[indexPath.row]) // MARK: - VM
+    cell.isStar = starViewModel.chekcUserDefaults(items[indexPath.row])
     cell.setupCell(item: items[indexPath.row])
     cell.cellDelegate = self
     return cell
@@ -99,14 +99,5 @@ extension StarViewController: CellButtonDelegate {
       self.starView.tableView.reloadData()
     }
   }
-
-//  func starButtonClicked(_ index: Int?) {
-//    guard
-//      let index = index,
-//      let item = starViewModel.items?[index]
-//    else { return }
-//    starViewModel.changeUserDefaults(item)
-//    self.starView.tableView.reloadData()
-//  }
 }
 

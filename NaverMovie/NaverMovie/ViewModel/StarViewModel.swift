@@ -8,15 +8,20 @@
 import Foundation
 
 class StarViewModel {
-  var itemsDic = UserDefaultsManager.shared.movieDictionary
+  var itemsDic = UserDefaultsManager.shared.movieDictionary.sorted { $0.key < $1.key }
   var items: [Item]?
 
   public init() {
-    items = itemsDic.values.map{ $0 } // TODO: - Order
+    items = itemsDic.map{ $0.value }
+  }
+  
+  func reloadUserDefaults() {
+    let sortedDic = UserDefaultsManager.shared.movieDictionary.sorted { $0.key < $1.key }
+    items = sortedDic.map{ $0.value }
   }
 
-  func reloadUserDefaults() {
-    items = UserDefaultsManager.shared.movieDictionary.values.map{ $0 } // TODO: - Order
+  func chekcUserDefaults(_ item: Item) -> Bool {
+    return UserDefaultsManager.shared.containMovieList(item)
   }
 
   func addUserDefaults(_ item: Item) {

@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 
 protocol CellButtonDelegate: AnyObject {
-//  func starButtonClicked(_ index: Int?)
   func starButtonClicked(_ item: Item?)
 }
 
@@ -18,7 +17,6 @@ class MovieCell: UITableViewCell {
   static let identifier = "MovieCell"
   var cellDelegate: CellButtonDelegate?
   var isStar: Bool = false
-//  var index: Int?
   var item: Item? // MARK: -
 
   let movieImageView = UIImageView()
@@ -112,7 +110,7 @@ class MovieCell: UITableViewCell {
     self.favoriteButton.tintColor = isStar ? .systemYellow : .systemGray
   }
 
-  // MARK: - UI 로직, 저장하는 로직은 VC에서 담당
+  // MARK: - UI 로직만, 저장하는 로직은 VC에서 담당
   @objc
   func starButtonClicked(sender: UIButton) {
     self.isStar.toggle()
