@@ -17,7 +17,7 @@ class StarViewController: UIViewController {
     super.viewWillAppear(animated)
     setupNaviView()
     starViewModel.reloadUserDefaults()
-    self.starView.tableView.reloadData()
+    self.starView.tableView.reloadData() // MARK: - Main Thread
   }
 
   override func viewDidLoad() {
@@ -77,30 +77,36 @@ extension StarViewController: UITableViewDelegate, UITableViewDataSource {
     else {
       return UITableViewCell()
     }
-    cell.isStar = UserDefaultsManager.shared.containMovieList(items[indexPath.row])
-    cell.index = indexPath.row
-    cell.cellDelegate = self
+    cell.isStar = UserDefaultsManager.shared.containMovieList(items[indexPath.row]) // MARK: - VM
+//    cell.index = indexPath.row
     cell.setupCell(item: items[indexPath.row])
+    cell.cellDelegate = self
     return cell
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let vc = MovieDetailViewController()
-    vc.url = URL(string: (starViewModel.items?[indexPath.row].link) ?? "")
-    vc.item = starViewModel.items?[indexPath.row]
-    vc.movieTitle = starViewModel.items?[indexPath.row].title
+    vc.movieDetailViewModel.item = starViewModel.items?[indexPath.row]
     self.navigationController?.pushViewController(vc, animated: true)
   }
 }
 
 extension StarViewController: CellButtonDelegate {
-  func starButtonClicked(_ index: Int?) {
-    guard
-      let index = index,
-      let item = starViewModel.items?[index]
-    else { return }
+  func starButtonClicked(_ item: Item?) {
+    guard let item = item else { return }
     starViewModel.changeUserDefaults(item)
-    self.starView.tableView.reloadData()
+    DispatchQueue.main.async {
+      self.starView.tableView.reloadData()
+    }
   }
+
+//  func starButtonClicked(_ index: Int?) {
+//    guard
+//      let index = index,
+//      let item = starViewModel.items?[index]
+//    else { return }
+//    starViewModel.changeUserDefaults(item)
+//    self.starView.tableView.reloadData()
+//  }
 }
 

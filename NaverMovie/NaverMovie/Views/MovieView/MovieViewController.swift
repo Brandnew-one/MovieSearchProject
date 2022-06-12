@@ -90,9 +90,7 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let vc = MovieDetailViewController()
-    vc.url = URL(string: (movieViewModel.model?.items[indexPath.row].link) ?? "")
-    vc.movieTitle = movieViewModel.model?.items[indexPath.row].title
-    vc.item = movieViewModel.model?.items[indexPath.row]
+    vc.movieDetailViewModel.item = movieViewModel.model?.items[indexPath.row]
     self.navigationController?.pushViewController(vc, animated: true)
   }
 
@@ -109,10 +107,9 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
     else {
       return UITableViewCell()
     }
-    cell.cellDelegate = self
-    cell.index = indexPath.row
     cell.isStar = movieViewModel.checkUserDefaults(model.items[indexPath.row])
     cell.setupCell(item: model.items[indexPath.row])
+    cell.cellDelegate = self // MARK: - VM에 넣어주는거 생각해보기
     return cell
   }
 
@@ -149,11 +146,16 @@ extension MovieViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MovieViewController: CellButtonDelegate {
   // MARK: - UI로직은 이미 수행되었고 정상적으로 동작한다고 (가정) -> item이 존재하면 지우고, 존재하지 않으면 추가
-  func starButtonClicked(_ index: Int?) {
-    guard
-      let index = index,
-      let item = movieViewModel.model?.items[index]
-    else { return }
+//  func starButtonClicked(_ index: Int?) {
+//    guard
+//      let index = index,
+//      let item = movieViewModel.model?.items[index]
+//    else { return }
+//    movieViewModel.changeUserDefaults(item)
+//  }
+
+  func starButtonClicked(_ item: Item?) {
+    guard let item = item else { return }
     movieViewModel.changeUserDefaults(item)
   }
 }
@@ -176,7 +178,9 @@ extension MovieViewController: UITextFieldDelegate {
 
   func findMovieData(findData: String) {
     self.movieViewModel.fetchMovieData(findData) {
-      self.movieView.tableView.reloadData()
+      DispatchQueue.main.async {
+        self.movieView.tableView.reloadData()
+      }
     }
   }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0269906867E92DDD5B08E367 /* Pods_NaverMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 995BB195E7800D54216CD590 /* Pods_NaverMovie.framework */; };
+		6513A9942855D5E300A7E553 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6513A9932855D5E300A7E553 /* MovieDetailViewModel.swift */; };
 		6537E29A28520C1700B48925 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6537E29928520C1700B48925 /* ImageCacheManager.swift */; };
 		656CEB85284F214600EFC2EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEB84284F214600EFC2EB /* AppDelegate.swift */; };
 		656CEB87284F214600EFC2EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656CEB86284F214600EFC2EB /* SceneDelegate.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		36B19732BC917F82ACB15AF0 /* Pods-NaverMovie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NaverMovie.release.xcconfig"; path = "Target Support Files/Pods-NaverMovie/Pods-NaverMovie.release.xcconfig"; sourceTree = "<group>"; };
+		6513A9932855D5E300A7E553 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		6537E29928520C1700B48925 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		656CEB81284F214600EFC2EB /* NaverMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NaverMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		656CEB84284F214600EFC2EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				656CEBAC284FC79800EFC2EB /* MovieViewModel.swift */,
+				6513A9932855D5E300A7E553 /* MovieDetailViewModel.swift */,
 				65DA0FB42853321B005E2966 /* StarViewModel.swift */,
 			);
 			path = ViewModel;
@@ -339,6 +342,7 @@
 				65DA0FB52853321B005E2966 /* StarViewModel.swift in Sources */,
 				659007FD2852D3410043600E /* MovieDetailViewController.swift in Sources */,
 				65DA0FB328530523005E2966 /* StarView.swift in Sources */,
+				6513A9942855D5E300A7E553 /* MovieDetailViewModel.swift in Sources */,
 				65DA0FB728535D98005E2966 /* MovieDetailView.swift in Sources */,
 				656CEB87284F214600EFC2EB /* SceneDelegate.swift in Sources */,
 			);

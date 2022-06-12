@@ -74,18 +74,16 @@ class MovieViewModel {
     }
   }
 
-  // TODO: - 고차함수로 바꿔보기
   private func setMovieData(model: Movie) -> Movie {
     var result = model
     for i in 0..<result.items.count {
-      result.items[i].title = result.items[i].title.replacingOccurrences(of: "<b>", with: "")
-      result.items[i].title = result.items[i].title.replacingOccurrences(of: "</b>", with: "")
-      // MARK: - 수정필요
+      result.items[i].title = result.items[i].title
+        .replacingOccurrences(of: "<b>", with: "")
+        .replacingOccurrences(of: "</b>", with: "")
       result.items[i].actor = result.items[i].actor.replacingOccurrences(of: "|", with: ",")
       result.items[i].director = result.items[i].director.replacingOccurrences(of: "|", with: ",")
       result.items[i].actor = removeLastChar(result.items[i].actor)
       result.items[i].director = removeLastChar(result.items[i].director)
-
     }
     return result
   }

@@ -10,12 +10,15 @@ import WebKit
 
 import SnapKit
 
+// TODO: - VM 추가하기!
 class MovieDetailViewController: UIViewController {
-  var url: URL? = nil
-  var movieTitle: String? = nil
-  var item: Item? = nil
+  let movieDetailViewModel = MovieDetailViewModel()
+  let movieDetailView = MovieDetailView()
 
-  private let movieDetailView = MovieDetailView()
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    movieDetailView.tableView.reloadData()
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -38,7 +41,7 @@ class MovieDetailViewController: UIViewController {
     self.navigationController?.navigationBar.isHidden = false
     self.navigationController?.navigationBar.tintColor = .black
     self.navigationController?.navigationBar.titleTextAttributes = naviFont
-    navigationItem.title = movieTitle
+    navigationItem.title = movieDetailViewModel.item?.title
     navigationItem.leftBarButtonItem = UIBarButtonItem(
       image: UIImage(systemName: "chevron.backward"),
       style: .plain,
@@ -57,7 +60,10 @@ class MovieDetailViewController: UIViewController {
   }
 
   private func webViewConfig() {
-    guard let url = url else { return }
+    guard
+      let link = movieDetailViewModel.item?.link,
+      let url = URL(string: link)
+    else { return }
     let request = URLRequest(url: url)
     movieDetailView.webView.configuration.defaultWebpagePreferences.allowsContentJavaScript = true
     movieDetailView.webView.load(request)
@@ -72,9 +78,8 @@ class MovieDetailViewController: UIViewController {
 extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if item != nil {
-      return 1
-    } else { return 0 }
+    guard movieDetailViewModel.item != nil else { return 0 }
+    return 1
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -90,24 +95,20 @@ extension MovieDetailViewController: UITableViewDelegate, UITableViewDataSource 
       withIdentifier: MovieCell.identifier,
       for: indexPath
     ) as? MovieCell,
-      let item = item
+      let item = movieDetailViewModel.item
     else {
       return UITableViewCell()
     }
-    cell.isStar = UserDefaultsManager.shared.containMovieList(item)
-    cell.favoriteButton.addTarget(self, action: #selector(favoriteButtonClicked), for: .touchUpInside)
+    cell.isStar = movieDetailViewModel.checkUserDefaults()
     cell.setupCell(item: item)
+    cell.cellDelegate = self
     return cell
-  }
-
-  @objc
-  func favoriteButtonClicked() {
-    guard let item = item else { return }
-    if UserDefaultsManager.shared.containMovieList(item) {
-      UserDefaultsManager.shared.removeMovieListItem(item)
-    } else {
-      UserDefaultsManager.shared.appendMovieListItem(item)
-    }
   }
 }
 
+extension MovieDetailViewController: CellButtonDelegate {
+  func starButtonClicked(_ item: Item?) {
+    guard let item = item else { return }
+    movieDetailViewModel.changeUserDefaults(item)
+  }
+}

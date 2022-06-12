@@ -12,11 +12,11 @@ class StarViewModel {
   var items: [Item]?
 
   public init() {
-    items = itemsDic.values.map{ $0 }
+    items = itemsDic.values.map{ $0 } // TODO: - Order
   }
 
   func reloadUserDefaults() {
-    items = UserDefaultsManager.shared.movieDictionary.values.map{ $0 }
+    items = UserDefaultsManager.shared.movieDictionary.values.map{ $0 } // TODO: - Order
   }
 
   func addUserDefaults(_ item: Item) {

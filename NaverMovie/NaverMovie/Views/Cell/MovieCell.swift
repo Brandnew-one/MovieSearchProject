@@ -10,14 +10,16 @@ import UIKit
 import SnapKit
 
 protocol CellButtonDelegate: AnyObject {
-  func starButtonClicked(_ index: Int?)
+//  func starButtonClicked(_ index: Int?)
+  func starButtonClicked(_ item: Item?)
 }
 
 class MovieCell: UITableViewCell {
   static let identifier = "MovieCell"
   var cellDelegate: CellButtonDelegate?
   var isStar: Bool = false
-  var index: Int?
+//  var index: Int?
+  var item: Item? // MARK: -
 
   let movieImageView = UIImageView()
   let movieTitleView = UILabel()
@@ -38,7 +40,7 @@ class MovieCell: UITableViewCell {
   }
 
   required init?(coder: NSCoder) {
-    fatalError("ERROR")
+    fatalError("CELL ERROR")
   }
 
   private func setupView() {
@@ -101,6 +103,7 @@ class MovieCell: UITableViewCell {
 
   // MARK: - Setup TableviewCell
   func setupCell(item: Item) {
+    self.item = item
     self.movieImageView.setImageUrl(item.image)
     self.movieTitleView.text = item.title
     self.movieActorView.text = item.actor
@@ -114,7 +117,7 @@ class MovieCell: UITableViewCell {
   func starButtonClicked(sender: UIButton) {
     self.isStar.toggle()
     self.favoriteButton.tintColor = isStar ? .systemYellow : .systemGray
-    cellDelegate?.starButtonClicked(index)
+    cellDelegate?.starButtonClicked(item)
   }
 
 }

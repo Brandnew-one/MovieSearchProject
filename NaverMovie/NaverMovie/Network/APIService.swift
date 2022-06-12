@@ -7,6 +7,7 @@
 
 import UIKit
 
+// TODO: - 추가하기!
 enum NetworkError: Error {
   case basic
   case decodeError
@@ -38,12 +39,12 @@ class APIService {
     var url = URLComponents(url: baseURL, resolvingAgainstBaseURL: false)
     let config = URLSessionConfiguration.default
     let session = URLSession(configuration: config)
-    let querry: [URLQueryItem] = [
+    let query: [URLQueryItem] = [
       URLQueryItem(name: "query", value: searchName),
       URLQueryItem(name: "display", value: String(display)),
       URLQueryItem(name: "start", value: String(start)),
     ]
-    url?.queryItems = querry
+    url?.queryItems = query
 
     var requestURL = URLRequest(url: (url?.url)!) // MARK: -
     requestURL.addValue(id, forHTTPHeaderField: "X-Naver-Client-Id")
