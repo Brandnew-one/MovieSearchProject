@@ -102,19 +102,19 @@ class MovieCell: UITableViewCell {
   // MARK: - Setup TableviewCell
   func setupCell(item: Item) {
     self.item = item
-    self.movieImageView.setImageUrl(item.image)
+    self.movieImageView.getImageFromURL(item.image)
     self.movieTitleView.text = item.title
-    self.movieActorView.text = item.actor
-    self.movieDirectorView.text = item.director
-    self.movieRateView.text = item.userRating
-    self.favoriteButton.tintColor = isStar ? .systemYellow : .systemGray
+    self.movieActorView.text = "출연: \(item.actor)"
+    self.movieDirectorView.text = "감독: \(item.director)"
+    self.movieRateView.text = "평점: \(item.userRating)"
+    self.favoriteButton.tintColor = isStar ? .systemYellow : .systemGray4
   }
 
   // MARK: - UI 로직만, 저장하는 로직은 VC에서 담당
   @objc
   func starButtonClicked(sender: UIButton) {
     self.isStar.toggle()
-    self.favoriteButton.tintColor = isStar ? .systemYellow : .systemGray
+    self.favoriteButton.tintColor = isStar ? .systemYellow : .systemGray4
     cellDelegate?.starButtonClicked(item)
   }
 
