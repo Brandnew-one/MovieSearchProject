@@ -25,7 +25,7 @@ class MovieViewController: UIViewController {
     setupView()
     setupNavigationItem()
     setupTableView()
-//    setupKeyboard()
+    //    setupKeyboard()
   }
 
   private func setupView() {
@@ -60,10 +60,10 @@ class MovieViewController: UIViewController {
     movieView.tableView.register(MovieCell.self, forCellReuseIdentifier: MovieCell.identifier)
   }
 
-//  private func setupKeyboard() {
-//    let tabGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing(_:)))
-//    view.addGestureRecognizer(tabGesture)
-//  }
+  //  private func setupKeyboard() {
+  //    let tabGesture = UITapGestureRecognizer(target: view, action: #selector(view.endEditing(_:)))
+  //    view.addGestureRecognizer(tabGesture)
+  //  }
 
   @objc
   func rightNaviItemClicked() {

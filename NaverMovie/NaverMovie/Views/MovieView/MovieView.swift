@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class MovieView: UIView {
-  public let lineView = UIView() // TODO: - UIKit navi option 있는지 확인 해보기
+  public let lineView = UIView()
   public let textField = UITextField()
   public let tableView = UITableView()
 
@@ -30,6 +30,7 @@ class MovieView: UIView {
     }
     lineView.backgroundColor = .systemGray6
     textField.borderStyle = .roundedRect
+    textField.clearButtonMode = .always
   }
 
   private func setupConstraints() {

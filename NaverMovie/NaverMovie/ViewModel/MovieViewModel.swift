@@ -47,10 +47,10 @@ class MovieViewModel {
               if !(self.model?.items.contains($0) ?? false) {
                 self.model?.items.append($0)
               }
+              completion()
             }
-            completion()
           }
-        }
+      }
     }
   }
 

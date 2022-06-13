@@ -77,7 +77,6 @@ extension StarViewController: UITableViewDelegate, UITableViewDataSource {
     else {
       return UITableViewCell()
     }
-//    cell.isStar = UserDefaultsManager.shared.containMovieList(items[indexPath.row]) // MARK: - VM
     cell.isStar = starViewModel.chekcUserDefaults(items[indexPath.row])
     cell.setupCell(item: items[indexPath.row])
     cell.cellDelegate = self

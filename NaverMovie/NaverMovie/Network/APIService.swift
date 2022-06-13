@@ -7,9 +7,9 @@
 
 import UIKit
 
-// TODO: - 추가하기!
+// TODO: - 네트워크 에러 구체화 필요
 enum NetworkError: Error {
-  case basic
+  case basicError
   case decodeError
 }
 
@@ -56,7 +56,7 @@ class APIService {
           let response = response as? HTTPURLResponse,
           let data = data
         else {
-          completion(.failure(.basic))
+          completion(.failure(.basicError))
           return
         }
         if let movieData = try? JSONDecoder().decode(Movie.self, from: data) {
