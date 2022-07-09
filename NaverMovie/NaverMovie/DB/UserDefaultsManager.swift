@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: - key 값을 URL 값으로 유일하게 설정할 수 있을지 확인 해보기
 class UserDefaultsManager {
   static let shared = UserDefaultsManager()
   private let userDefaultsKey = "StarList"
